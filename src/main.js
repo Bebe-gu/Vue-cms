@@ -1,21 +1,32 @@
 import Vue from 'vue'
-import app from './App.vue'
-import router from './router.js'
+    //引入配置路由
+import VueRouter from 'vue-router'
+    //导入路由文件
+Vue.use(VueRouter)
 
-import './lib/mui/css/mui.css' 
+import VueResource from 'vue-resource'
+
+Vue.use(VueResource)
+// Vue.http.options.emulateJSON = true
+
+
+import './lib/mui/css/mui.css'
+import './lib/mui/css/icons-extra.css'
 
 import {
-    Header, Tabbar, TabItem, Button
+    Header, Button,Swipe, SwipeItem
 }
 from 'mint-ui';
 Vue.component(Button.name, Button);
 Vue.component(Header.name, Header);
-Vue.component(Tabbar.name, Tabbar);
-Vue.component(TabItem.name, TabItem);
+Vue.component(Swipe.name, Swipe);
+Vue.component(SwipeItem.name, SwipeItem);
 
-
+import router from './router.js'
+import app from './App.vue'
 var vm = new Vue({
     el: '#app',
     render: c => c(app),
-    router
+     router
+
 })
