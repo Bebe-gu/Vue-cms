@@ -2,7 +2,7 @@ import Vue from 'vue'
 import app from './App.vue'
 import router from './router.js'
 
-import './lib/mui/css/mui.css'
+import './lib/mui/css/mui.css' 
 
 import {
     Header, Tabbar, TabItem, Button
