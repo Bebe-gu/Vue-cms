@@ -9,6 +9,15 @@ import VueResource from 'vue-resource'
 Vue.use(VueResource)
 // Vue.http.options.emulateJSON = true
 
+//设置请求路径
+Vue.http.options.root='http://xxxx.com';
+
+//npm i moment -S 格式化时间 
+import momet from 'moment'
+//定义全局时间过滤器
+Vue.filter('dateFormat',function(dateStr,pattern='YYYY-MM-DD HH:mm:ss') {
+	return moment(dateStr).format(pattern);
+});
 
 import './lib/mui/css/mui.css'
 import './lib/mui/css/icons-extra.css'

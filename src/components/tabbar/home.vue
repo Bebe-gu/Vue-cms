@@ -7,10 +7,10 @@
         <!-- 分类列表 -->
         <ul class="mui-table-view mui-grid-view mui-grid-9">
             <li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3">
-                <a href="#">
+                <router-link to="/home/goodslist">
                     <img src="../../img/menu1.png" alt="">
                     <div class="mui-media-body">家电数码</div>
-                </a>
+                </router-link>
             </li>
             <li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3">
                 <a href="#">
@@ -115,14 +115,14 @@ export default {
                 ]
             }
         },
-        created() {
-            this.getLunbo();
-        },
+        // created() {
+        //     this.getLunbo();
+        // },
         methods: {
             //后台获取
-            getLunbo() {
+            // getLunbo() {
 
-                // this.$http.get('http://vue.studyit.io/api/getlunbo').then(result => {
+                // this.$http.get('api/getlunbo').then(result => {
                 //     console.log(result);
                 //     // if (result.body.status === 0) {
                 //     //     this.lunbotuList = result.body.message
@@ -131,7 +131,7 @@ export default {
                 //     //     Toast('加载轮播图数据失败');
                 //     // }
                 // });
-            }
+            // }
         }
 }
 </script>
@@ -159,7 +159,7 @@ export default {
             color: #000;
         }
         .more {
-             font-size: 16px;
+            font-size: 16px;
             color: #fe435d;
             text-align: right;
         }
@@ -176,7 +176,7 @@ export default {
         }
         &:nth-child(3) {
             border-left: 1px solid #eee;
-            border-bottom: 2px solid #eee;
+            border-bottom: 1px solid #eee;
         }
         &:nth-child(4) {
             border-left: 1px solid #eee;
@@ -187,7 +187,7 @@ export default {
 
 .mui-table-view.mui-grid-view {
     width: none;
-    margin: 5px;
+    margin-bottom: 5px; 
     background-color: #fff;
     overflow: hidden;
     .mui-table-view-cell {
@@ -203,22 +203,9 @@ export default {
     }
 }
 
-.mui-bar {
-    //background-color: #fff;
-}
-
 .mint-swipe {
     height: 200px;
     .mint-swipe-item {
-        // &:nth-child(1) {
-        //     background-color: pink;
-        // }
-        // &:nth-child(2) {
-        //     background-color: lightgreen;
-        // }
-        // &:nth-child(3) {
-        //     background-color: lightcyan;
-        // }
         img {
             width: 100%;
             height: 100%;

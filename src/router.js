@@ -5,6 +5,8 @@ import home from './components/tabbar/home.vue'
 import member from './components/tabbar/member.vue'
 import shopcart from './components/tabbar/shopcart.vue'
 import search from './components/tabbar/search.vue'
+import goodslist from './components/goods/goodslist.vue'
+import goodsinfo from './components/goods/goodsinfo.vue'
 
 
 
@@ -24,6 +26,12 @@ var router = new VueRouter({
     }, {
         path: '/search',
         component: search
+    },{
+        path: '/home/goodslist',
+        component: goodslist
+    },{
+        path: '/home/goodsinfo/:id',
+        component: goodsinfo
     }],
     linkActiveClass: 'mui-active'
 })
