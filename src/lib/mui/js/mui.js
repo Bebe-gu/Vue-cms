@@ -8384,3 +8384,5 @@ Function.prototype.bind = Function.prototype.bind || function(to) {
         return buttonApis.length === 1 ? buttonApis[0] : buttonApis;
     };
 })(mui, window, document);
+
+window.mui = mui; 

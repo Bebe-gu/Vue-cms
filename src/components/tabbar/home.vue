@@ -8,57 +8,57 @@
         <ul class="mui-table-view mui-grid-view mui-grid-9">
             <li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3">
                 <router-link to="/home/goodslist">
-                    <img src="../../img/menu1.png" alt="">
+                    <img src="/img/menu1.png" alt="">
                     <div class="mui-media-body">家电数码</div>
                 </router-link>
             </li>
             <li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3">
                 <a href="#">
-                    <img src="../../img/menu2.png" alt="">
+                    <img src="/img/menu2.png" alt="">
                     <div class="mui-media-body">手机充值</div>
                 </a>
             </li>
             <li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3">
                 <a href="#">
-                    <img src="../../img/menu3.png" alt="">
+                    <img src="/img/menu3.png" alt="">
                     <div class="mui-media-body">蔬果配送</div>
                 </a>
             </li>
             <li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3">
                 <a href="#">
-                    <img src="../../img/menu4.png" alt="">
+                    <img src="/img/menu4.png" alt="">
                     <div class="mui-media-body">实惠超市</div>
                 </a>
             </li>
             <li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3">
-                <a href="#">
-                    <img src="../../img/menu5.png" alt="">
-                    <div class="mui-media-body">潮鞋潮装</div>
-                </a>
+                <router-link to="/home/photolist">
+                    <img src="/img/menu5.png" alt="">
+                    <div class="mui-media-body">潮装搭配</div>
+                </router-link>
             </li>
             <li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3">
                 <a href="#">
-                    <img src="../../img/menu6.png" alt="">
+                    <img src="/img/menu6.png" alt="">
                     <div class="mui-media-body">拼团限购</div>
                 </a>
             </li>
             <li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3">
                 <a href="#">
-                    <img src="../../img/menu7.png" alt="">
+                    <img src="/img/menu7.png" alt="">
                     <div class="mui-media-body">拍拍二手</div>
                 </a>
             </li>
             <li class="mui-table-view-cell mui-media mui-col-xs-3 mui-col-sm-3">
                 <a href="#">
-                    <img src="../../img/menu8.png" alt="">
+                    <img src="/img/menu8.png" alt="">
                     <div class="mui-media-body">美容美妆</div>
                 </a>
             </li>
         </ul>
         <!-- 中间轮播 -->
         <mt-swipe :auto="3000" :show-indicators="false" class="middle-swipe">
-            <mt-swipe-item><img src="../../img/10banner-620X1501.jpg" alt=""></mt-swipe-item>
-            <mt-swipe-item><img src="../../img/lppz600-150.jpg" alt=""></mt-swipe-item>
+            <mt-swipe-item><img src="/img/10banner-620X1501.jpg" alt=""></mt-swipe-item>
+            <mt-swipe-item><img src="/img/lppz600-150.jpg" alt=""></mt-swipe-item>
         </mt-swipe>
         <!-- 推荐商品 -->
         <section class="floor mui-clearfix">
@@ -66,9 +66,9 @@
          <a class="title">推荐商品</a>
          <a href="" class="more" dd_name="更多">更多</a>
              </h2>
-            <a href="" dd_name=""><img class="" src="../../img/DHC-h51.jpg"></a>
-            <a href=""><img class="" src="../../img/liangpinpuzih53.jpg"></a>
-            <a href=""><img class="" src="../../img/doujiangjih52.jpg"></a>
+            <a href="" dd_name=""><img class="" src="/img/DHC-h51.jpg"></a>
+            <a href=""><img class="" src="/img/liangpinpuzih53.jpg"></a>
+            <a href=""><img class="" src="/img/doujiangjih52.jpg"></a>
         </section>
         <!-- 优惠商品 -->
         <section class="floor mui-clearfix">
@@ -77,8 +77,8 @@
          <a href="" class="more" dd_name="更多">更多</a>
              </h2>
             <a href="" dd_name=""><img class="" src="../../img/h5-k1-1008-nbewxj2015.jpg"></a>
-            <a href=""><img class="" src="../../img/h5-k3-1008-xsqxk.jpg"></a>
-            <a href=""><img class="" src="../../img/h5-k2-1008-slbdmj.jpg"></a>
+            <a href=""><img class="" src="/img/h5-k3-1008-xsqxk.jpg"></a>
+            <a href=""><img class="" src="/img/h5-k2-1008-slbdmj.jpg"></a>
         </section>
     </div>
 </template>
@@ -94,22 +94,22 @@ export default {
                 //轮播图模拟数据
                 lunbotuList: [{
                         id: 1,
-                        url: './img/banner1.jpg'
+                        url: '/img/banner1.jpg'
                     }, {
                         id: 2,
-                        url: './img/banner2.jpg'
+                        url: '/img/banner2.jpg'
                     }, {
                         id: 3,
-                        url: './img/banner3.jpg'
+                        url: '/img/banner3.jpg'
                     }, {
                         id: 4,
-                        url: './img/banner4.jpg'
+                        url: '/img/banner4.jpg'
                     }, {
                         id: 5,
-                        url: './img/banner5.jpg'
+                        url: '/img/banner5.jpg'
                     }, {
                         id: 6,
-                        url: './img/banner6.jpg'
+                        url: '/img/banner6.jpg'
                     }
 
                 ]

@@ -7,6 +7,8 @@ import shopcart from './components/tabbar/shopcart.vue'
 import search from './components/tabbar/search.vue'
 import goodslist from './components/goods/goodslist.vue'
 import goodsinfo from './components/goods/goodsinfo.vue'
+import photolist from './components/photos/photolist.vue'
+import photoinfo from './components/photos/photoinfo.vue'
 
 
 
@@ -32,6 +34,12 @@ var router = new VueRouter({
     },{
         path: '/home/goodsinfo/:id',
         component: goodsinfo
+    },{
+        path: '/home/photolist',
+        component: photolist
+    },{
+        path: '/home/photoinfo/:id',
+        component: photoinfo
     }],
     linkActiveClass: 'mui-active'
 })

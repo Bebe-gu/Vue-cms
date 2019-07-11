@@ -55,6 +55,7 @@ module.exports = {
     },
     //配置插件节点
     plugins: [
+      
         //启用热更新模块
         new webpack.HotModuleReplacementPlugin(),
         new htmlWebpackPlugin({
@@ -69,6 +70,7 @@ module.exports = {
     resolve: {
         alias: {
             "vue$": "vue/dist/vue.js"
+          
         }
     }
 }
