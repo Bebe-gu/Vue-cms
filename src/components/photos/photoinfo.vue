@@ -1,8 +1,8 @@
 <template>
     <div>
-        <div class="thumbs"> <img class="preview-img" v-for="(item, index) in imglist" :src="item.src" height="100" @click="$preview.open(index, imglist)" :key="item.src"> 
+        <div class="thumbs"> <img class="preview-img" v-for="(item, index) in imglist" :src="item.src" height="100" @click="$preview.open(index, imglist)" :key="item.src">
         </div>
-         <h1>详细搭配区域</h1>
+        <h1>详细搭配区域</h1>
     </div>
 </template>
 <script>
@@ -100,6 +100,7 @@ export default {
                 }]
             };
         },
+
         created() {
             //console.log(this.getImgInfoById());
             this.getImgInfoById();
@@ -125,5 +126,4 @@ export default {
     text-align: justify;
     img {}
 }
-
 </style>

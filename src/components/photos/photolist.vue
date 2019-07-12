@@ -24,7 +24,6 @@
 </template>
 <script>
 //npm i babel-plugin-transform-remove-strict-mode -D 取消webpack严格模式
-import mui from '../../lib/mui/js/mui.min.js'
 
 export default {
     data() {

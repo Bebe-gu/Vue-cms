@@ -31,7 +31,7 @@ import './lib/mui/css/icons-extra.css'
 import './lib/mui/css/mui.picker.css'
 import './lib/mui/css/mui.poppicker.css'
 
-import  './lib/mui/js/mui.js'
+import mui from './lib/mui/js/mui.js'
 import './lib/mui/js/mui.picker.js'
 import './lib/mui/js/mui.poppicker.js' 
 

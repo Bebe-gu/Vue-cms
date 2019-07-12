@@ -1,6 +1,5 @@
 <template>
     <div>
-        <!-- <numbox></numbox> -->
         <!-- 轮播图 -->
         <mt-swipe :auto="4000">
             <mt-swipe-item v-for="item in getsliderImg" :key="item.id">
@@ -56,7 +55,7 @@
             <li><a class="incart" @click="popupVisible=true">加入购物车</a></li>
             <li><a class="skill">立即购买</a></li>
         </ul>
-        <!-- 商品规格参数选择 -->
+        <!-- 商品规格参数选择  数量-->
         <mt-popup v-model="popupVisible" position="bottom" style="width: 100%;" :lockScroll='true'>
             <div class="popup overlayer" @scroll.prevent @touchmove.prevent>
                 <div class="items mui-clearfix">
@@ -76,11 +75,7 @@
                         <div class="number-wrap">
                             <div class="number-line">
                                 <label for="number">购买数量</label><span class="J_limitTxt limit-txt"></span>
-                                <div class="number">
-                                    <button :class="{decrease:true,disabled:num==1}" @click="num>1?num--:1">-</button>
-                                    <input id="number" type="number" v-model="num" @blur="inputMoneyListern" min="1">
-                                    <button :class="{increase:true,disabled:num>=getListById[0].count}" @click="num>=getListById[0].count?getListById[0].count:num++">+</button>
-                                </div>
+                                <numbox @getnum="getselectnum" :maxnum="defaultCount"></numbox>
                             </div>
                         </div>
                     </div>
@@ -92,6 +87,7 @@
         <transition @before-enter="beforeEnter" @enter="enter" @after-enter="afterEnter">
             <span class="add_num" ref="popone" id="popone" v-show="flag">+{{num}}</span>
         </transition>
+
     </div>
 </template>
 <script>
@@ -99,10 +95,15 @@ import {
     Toast
 }
 from 'mint-ui';
-// import numbox from '../subcomponents/numbox.vue'
+import numbox from '../subcomponents/numbox.vue'
 export default {
     data() {
             return {
+                num: 1,
+                defaultCount: 0,
+                popupVisible: false,
+                list: [],
+                id: this.$route.params.id,
                 badgePositionLeft: 0,
                 popupVisible: false,
                 flag: false,
@@ -11655,11 +11656,6 @@ export default {
                         text: "海外"
                     }]
                 }],
-                num: 1,
-                defaultCount: 0,
-                popupVisible: false,
-                list: [],
-                id: this.$route.params.id,
                 datalist: [{
                         id: 1,
                         title: "美的（Midea）电压力锅5升双胆电高压锅 一键排气 七段调压 开盖收汁 WQC50A5",
@@ -11992,12 +11988,12 @@ export default {
         },
         mounted() {
             //页面加载完毕后动态设置popone+1的距离和徽标一致
-             //解决购物车动画不同尺寸位置错误问题
+            //解决购物车动画不同尺寸位置错误问题
             this.$nextTick(function() {
                 //徽标左边距离
                 var badgeleft = document.getElementById('badge').getBoundingClientRect().left;
                 //将徽标左距离赋给popone+1的左距离
-                document.getElementById('popone').style.left=badgeleft+"px";
+                document.getElementById('popone').style.left = badgeleft + "px";
                 //console.log('徽标:' + badgeleft + '---数字：' + poponeLeft);
             });
         },
@@ -12005,7 +12001,7 @@ export default {
             //可用ajxa从后台接口获取数据
 
             //数量选择检测
-            inputMoneyListern(event) {
+            inputNumListern(event) {
                     var number = event.target.value - 0;
                     //console.log(number);
                     if (number <= 0) {
@@ -12023,12 +12019,15 @@ export default {
                 //显示城市选择
                 showCityPicker() {
                     var adressStr = '';
+                    var _getParam = function(obj, param) {
+                        return obj[param] || '';
+                    };
                     var picker = new mui.PopPicker({
                         layer: 3
                     });
                     picker.setData(this.cityData);
                     picker.show(function(selectItems) {
-                        document.getElementById('address').innerText = (selectItems[0] || {}).text + " " + (selectItems[1] || {}).text + " " + (selectItems[2] || {}).text;
+                        document.getElementById('address').innerText = _getParam(selectItems[0], 'text') + " " + _getParam(selectItems[1], 'text') + " " + _getParam(selectItems[2], 'text');
                         //返回 false 可以阻止选择框的关闭
                     });
                     //15s后销毁picker组件,防止卡顿
@@ -12041,7 +12040,6 @@ export default {
                     this.flag = true;
                     //购物车动画
                 }, beforeEnter(el) {
-
                     el.style.transform = "translate(0,0)";
                 }, enter(el, done) {
                     el.offsetWidth;
@@ -12055,7 +12053,19 @@ export default {
                     done();
                 }, afterEnter(el) {
                     this.flag = !this.flag;
+                },getselectnum(num){ //定义接收子组件数据的处理方法
+                    //赋值给自己data num
+                    this.num=num;
+                   if (num > this.getListById[0].count) {
+                        this.num = this.defaultCount;
+                        Toast({
+                            message: '该商品最多购买' + this.defaultCount + '件',
+                            position: 'middle',
+                            duration: 3000
+                        });
+                    }
                 }
+
         },
         computed: {
             getListById() {
@@ -12077,7 +12087,7 @@ export default {
                 }
         },
         components: {
-            // numbox
+            numbox
         }
 }
 </script>
@@ -12163,7 +12173,7 @@ export default {
                     border-bottom: 1px solid rgba(0, 0, 0, .1);
                     border-top: 1px solid rgba(0, 0, 0, .1);
                     padding: 10px 0px;
-                    line-height: 36px;
+                    line-height: 30px;
                     .number {
                         height: 36px;
                         width: 100px;

@@ -25,12 +25,11 @@
                 </span>
                 <span class="mui-tab-label">购物车</span>
             </router-link>
-             <router-link class="mui-tab-item-vue" to="/member">
+            <router-link class="mui-tab-item-vue" to="/member">
                 <span class="mui-icon mui-icon-contact mui-icon-icon-contact-filled"></span>
                 <span class="mui-tab-label">会员</span>
             </router-link>
         </nav>
-       
     </div>
 </template>
 <script>
@@ -39,10 +38,11 @@
 * {
     touch-action: pan-y;
 }
+
 .app-container {
     padding-top: 45px;
     overflow-x: hidden;
-    padding-bottom:50px;
+    padding-bottom: 50px;
 }
 
 .v-enter {
@@ -79,6 +79,7 @@
     text-overflow: ellipsis;
     color: #929292;
 }
+
 .mui-bar-tab .mui-tab-item-vue.mui-active {
     color: #007aff;
 }
@@ -90,6 +91,7 @@
     padding-top: 0;
     padding-bottom: 0;
 }
+
 .mui-bar-tab .mui-tab-item-vue .mui-icon ~ .mui-tab-label {
     font-size: 11px;
     display: block;
