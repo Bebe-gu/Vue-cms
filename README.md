@@ -13,5 +13,6 @@ vue v2.0
 3. 浏览器项目运行
 
 4. 预览
+
 ![image](https://github.com/Bebe-gu/Vue-cms/blob/master/1.png?raw=true)
 ![image](https://github.com/Bebe-gu/Vue-cms/blob/master/demo.gif?raw=true)
