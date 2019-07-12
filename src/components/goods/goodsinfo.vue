@@ -1,5 +1,6 @@
 <template>
     <div>
+        <!-- <numbox></numbox> -->
         <!-- 轮播图 -->
         <mt-swipe :auto="4000">
             <mt-swipe-item v-for="item in getsliderImg" :key="item.id">
@@ -7,18 +8,21 @@
             </mt-swipe-item>
         </mt-swipe>
         <!-- 商品标题 -->
-        <p class="title" v-for="list in getListById" :key="list.id">{{list.title}}</p>
+        <p class="title">{{getListById[0].title}}</p>
         <!-- 客户自选参数 -->
         <ul class="mui-table-view">
             <li class="mui-table-view-cell">
-                <div class="title-price"> <small>¥</small>{{getListById[0].now_price}} <span class="icon-text">专属优惠</span></div>
+                <div class="title-price"> <small>¥</small>{{getListById[0].now_price}} <span class="icon-text">专属优惠</span>
+                </div>
+                <span class="old-price">价格：<del>¥{{getListById[0].old_price}}</del></span>
                 <div class="choose">
                     <span>已选</span>
-                    <span>数量：{{this.num}}个</span>
+                    <span>数量：{{num}}个</span>
                 </div>
                 <div><span class="text">本商品支持保障服务，点击可选服务</span></div>
                 <span class="icon" @click="popupVisible=true"></span>
             </li>
+            <!-- 地址选择 -->
             <li class="mui-table-view-cell">
                 <div class="sendAddress">
                     <span>送至</span>
@@ -30,6 +34,7 @@
                     <span>运费</span>
                     <span>包邮</span>
                 </div>
+                <!-- picker -->
                 <span class="icon" @click="showCityPicker"></span>
             </li>
         </ul>
@@ -49,12 +54,11 @@
             <li><a href="" class="chat"><i class="mui-icon mui-icon-chat"></i><span class="mui-tab-label">联系客服</span></a></li>
             <li><a href="" class="inshop"><i class="mui-icon mui-icon-extra mui-icon-extra-computer"></i><span class="mui-tab-label">进店</span></a></li>
             <li><a class="incart" @click="popupVisible=true">加入购物车</a></li>
-            <li><a class="skill">立即秒杀</a></li>
+            <li><a class="skill">立即购买</a></li>
         </ul>
-        <!-- 地址选择 -->
         <!-- 商品规格参数选择 -->
-        <mt-popup v-model="popupVisible" position="bottom" style="width: 100%;">
-            <div class="popup ">
+        <mt-popup v-model="popupVisible" position="bottom" style="width: 100%;" :lockScroll='true'>
+            <div class="popup overlayer" @scroll.prevent @touchmove.prevent>
                 <div class="items mui-clearfix">
                     <div class="header ">
                         <div class="img-wrap">
@@ -81,9 +85,13 @@
                         </div>
                     </div>
                 </div>
-                <div class="footer"><a @click="popupVisible=false">确定</a></div>
+                <div class="footer"><a @click="addToShopCart">加入购物车</a><a @click="popupVisible=false">立刻购买</a>
+                </div>
             </div>
         </mt-popup>
+        <transition @before-enter="beforeEnter" @enter="enter" @after-enter="afterEnter">
+            <span class="add_num" ref="popone" id="popone" v-show="flag">+{{num}}</span>
+        </transition>
     </div>
 </template>
 <script>
@@ -91,9 +99,13 @@ import {
     Toast
 }
 from 'mint-ui';
+// import numbox from '../subcomponents/numbox.vue'
 export default {
     data() {
             return {
+                badgePositionLeft: 0,
+                popupVisible: false,
+                flag: false,
                 address: '北京朝阳区三环到四环之间',
                 cityData: [{
                     value: '110000',
@@ -11977,16 +11989,20 @@ export default {
             //this.inputMoneyListern(event);
             //console.log(this.defaultCount);
             //console.log(this.address);
-
         },
         mounted() {
-
+            //页面加载完毕后动态设置popone+1的距离和徽标一致
+             //解决购物车动画不同尺寸位置错误问题
+            this.$nextTick(function() {
+                //徽标左边距离
+                var badgeleft = document.getElementById('badge').getBoundingClientRect().left;
+                //将徽标左距离赋给popone+1的左距离
+                document.getElementById('popone').style.left=badgeleft+"px";
+                //console.log('徽标:' + badgeleft + '---数字：' + poponeLeft);
+            });
         },
-
         methods: {
             //可用ajxa从后台接口获取数据
-
-
 
             //数量选择检测
             inputMoneyListern(event) {
@@ -12015,10 +12031,30 @@ export default {
                         document.getElementById('address').innerText = (selectItems[0] || {}).text + " " + (selectItems[1] || {}).text + " " + (selectItems[2] || {}).text;
                         //返回 false 可以阻止选择框的关闭
                     });
-                    //15庙后销毁picker组件,防止卡顿
+                    //15s后销毁picker组件,防止卡顿
                     setTimeout(function() {
                         picker.dispose();
-                    }, 15000)
+                    }, 30000)
+                },
+                addToShopCart() {
+                    this.popupVisible = false;
+                    this.flag = true;
+                    //购物车动画
+                }, beforeEnter(el) {
+
+                    el.style.transform = "translate(0,0)";
+                }, enter(el, done) {
+                    el.offsetWidth;
+                    el.style.transform = `translate(0,-20px)`;
+                    el.style.transition = "all 2s ease";
+                    Toast({
+                        message: '加入购物车成功',
+                        position: 'middle',
+                        duration: 2000
+                    });
+                    done();
+                }, afterEnter(el) {
+                    this.flag = !this.flag;
                 }
         },
         computed: {
@@ -12039,10 +12075,26 @@ export default {
                         return arr = list[i].infoImg;
                     }
                 }
+        },
+        components: {
+            // numbox
         }
 }
 </script>
 <style lang="scss" scoped>
+.add_num {
+    position: fixed;
+    padding: 2px 3px;
+    color: #ff0000;
+    font-weight: 700;
+    bottom: 30px;
+    right: 130px;
+    display: block;
+    font-size: 18px;
+    pointer-events: none;
+    z-index: 30;
+}
+
 .popup {
     width: 100%;
     min-height: 375px;
@@ -12170,11 +12222,15 @@ export default {
         bottom: 0;
         text-align: center;
         a {
-            width: 100%;
+            float: left;
+            width: 50%;
             color: #fff;
             background-color: #FF0036;
             display: block;
             line-height: 50px;
+            &:nth-of-type(1) {
+                background-color: #ffbc00;
+            }
         }
     }
 }
@@ -12209,6 +12265,10 @@ export default {
             bottom: 8px;
             height: 18px;
         }
+    }
+    .old-price {
+        font-size: 12px;
+        color: #999;
     }
     .choose {
         span {
@@ -12387,5 +12447,4 @@ export default {
     position: absolute;
     font-size: 12px;
 }
-
 </style>
