@@ -8,7 +8,7 @@
                         <a href="#"><img :src="item.img_url"></a>
                     </div>
                     <p class="title">{{item.title}}</p>
-                    <p><span class="new_price">¥{{item.now_price}}</span>&#12288;
+                    <p><span class="new_price"><small>¥</small>{{item.now_price}}</span>&#12288;
                         <span>¥<del>{{item.old_price}}</del></span>
                     </p>
                     <small class="count">库存：{{item.count}}件</small>
