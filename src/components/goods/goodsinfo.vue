@@ -73,9 +73,9 @@
                             <div class="number-line">
                                 <label for="number">购买数量</label><span class="J_limitTxt limit-txt"></span>
                                 <div class="number">
-                                    <button :class="{decrease:true,disabled:this.num==0}" @click="num>0?num--:0">-</button>
-                                    <input id="number" type="number" v-model="num" @blur="inputMoneyListern">
-                                    <button :class="{increase:true,disabled:this.num>=getListById[0].count}" @click="num>=getListById[0].count?getListById[0].count:num++">+</button>
+                                    <button :class="{decrease:true,disabled:num==1}" @click="num>1?num--:1">-</button>
+                                    <input id="number" type="number" v-model="num" @blur="inputMoneyListern" min="1">
+                                    <button :class="{increase:true,disabled:num>=getListById[0].count}" @click="num>=getListById[0].count?getListById[0].count:num++">+</button>
                                 </div>
                             </div>
                         </div>
@@ -87,6 +87,10 @@
     </div>
 </template>
 <script>
+import {
+    Toast
+}
+from 'mint-ui';
 export default {
     data() {
             return {
@@ -11989,10 +11993,15 @@ export default {
                     var number = event.target.value - 0;
                     //console.log(number);
                     if (number <= 0) {
-                        this.num = 0;
+                        this.num = 1;
                     }
                     if (number > this.getListById[0].count) {
                         this.num = this.defaultCount;
+                        Toast({
+                            message: '该商品最多购买' + this.defaultCount + '件',
+                            position: 'middle',
+                            duration: 3000
+                        });
                     }
                 },
                 //显示城市选择
@@ -12190,7 +12199,6 @@ export default {
         font-size: 24px;
         padding: 5px 0;
         position: relative;
-        
         .icon-text {
             background-color: #fb6878;
             color: #FFF;
@@ -12198,7 +12206,7 @@ export default {
             padding: 0px 2px;
             position: absolute;
             margin-left: 5px;
-            bottom:8px;
+            bottom: 8px;
             height: 18px;
         }
     }
@@ -12379,4 +12387,5 @@ export default {
     position: absolute;
     font-size: 12px;
 }
+
 </style>

@@ -110,7 +110,7 @@ export default {
                 var list = this.thumbslist.filter(item => item.id == this.id)
                 for (var i = 0; i < list.length; i++) {
                     this.imglist = list[i].img;
-                    console.log(list[i].img);
+                    //console.log(list[i].img);
                 }
             }
         },
@@ -125,4 +125,5 @@ export default {
     text-align: justify;
     img {}
 }
+
 </style>
