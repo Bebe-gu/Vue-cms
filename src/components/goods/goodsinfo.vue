@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div style="margin-bottom: 50px;">
         <!-- 轮播图 -->
         <mt-swipe :auto="4000">
             <mt-swipe-item v-for="item in getsliderImg" :key="item.id">
@@ -35,7 +35,6 @@
                 </div>
                 <!-- picker -->
                 <span class="icon" @click="showCityPicker"></span>
-              
             </li>
         </ul>
         <!-- 商品详情页 -->
@@ -50,7 +49,7 @@
             <!-- <p class="more">加载更多</p> -->
         </div>
         <!-- 购物车购买 -->
-        <ul class="cart mui-clearfix">
+        <ul class="cart mui-clearfix" ref="cart">
             <li><a href="" class="chat"><i class="mui-icon mui-icon-chat"></i><span class="mui-tab-label">联系客服</span></a></li>
             <li><a href="" class="inshop"><i class="mui-icon mui-icon-extra mui-icon-extra-computer"></i><span class="mui-tab-label">进店</span></a></li>
             <li><a class="incart" @click="popupVisible=true">加入购物车</a></li>
@@ -88,7 +87,6 @@
         <transition @before-enter="beforeEnter" @enter="enter" @after-enter="afterEnter">
             <span class="add_num" ref="popone" id="popone" v-show="flag">+{{num}}</span>
         </transition>
-
     </div>
 </template>
 <script>
@@ -97,17 +95,19 @@ import {
 }
 from 'mint-ui';
 import numbox from '../subcomponents/numbox.vue'
-//import pickercity from '../../components/subcomponents/pickercity.vue'
+    //import pickercity from '../../components/subcomponents/pickercity.vue'
 import cityData from '../../lib/data/mui-city.js'
 import datalist from '../../lib/data/goodsInfoData.js'
 export default {
     data() {
             return {
+                cartbottom: '',
                 num: 1,
                 defaultCount: 0,
                 popupVisible: false,
                 list: [],
                 id: this.$route.params.id,
+                msrc: '',
                 badgePositionLeft: 0,
                 popupVisible: false,
                 flag: false,
@@ -117,12 +117,12 @@ export default {
             }
         },
         created() {
-            //console.log(this.getInfoImg.pic_url);
-
+            //小图
+            this.msrc = this.getListById[0].img_url[0].msrc;
             this.defaultCount = this.getListById[0].count;
             //this.inputMoneyListern(event);
             //console.log(this.defaultCount);
-            //console.log(this.address);
+            //console.log(this.getListById[0]);
         },
         mounted() {
             //页面加载完毕后动态设置popone+1的距离和徽标一致
@@ -133,29 +133,13 @@ export default {
                 //将徽标左距离赋给popone+1的左距离
                 document.getElementById('popone').style.left = badgeleft + "px";
                 //console.log('徽标:' + badgeleft + '---数字：' + poponeLeft);
+                //console.log(this.$refs.cart);
             });
         },
         methods: {
             //可用ajxa从后台接口获取数据
-
-            //数量选择检测
-            inputNumListern(event) {
-                    var number = event.target.value - 0;
-                    //console.log(number);
-                    if (number <= 0) {
-                        this.num = 1;
-                    }
-                    if (number > this.getListById[0].count) {
-                        this.num = this.defaultCount;
-                        Toast({
-                            message: '该商品最多购买' + this.defaultCount + '件',
-                            position: 'middle',
-                            duration: 3000
-                        });
-                    }
-                },
-                //显示城市选择
-                showCityPicker() {
+            //显示城市选择
+            showCityPicker() {
                     var adressStr = '';
                     var _getParam = function(obj, param) {
                         return obj[param] || '';
@@ -176,6 +160,18 @@ export default {
                 addToShopCart() {
                     this.popupVisible = false;
                     this.flag = true;
+                    //保存到store中的购物车商品信息 id 数量,价格,选中状态
+                    var goodsinfo = {
+                            id: this.id,
+                            title: this.getListById[0].title,
+                            msrc: this.msrc,
+                            count: this.num,
+                            maxnum: this.getListById[0].count,
+                            price: this.getListById[0].now_price,
+                            checked: true
+                        }
+                        //调用store 加入方法
+                    this.$store.commit('addToCart', goodsinfo);
                     //购物车动画
                 }, beforeEnter(el) {
                     el.style.transform = "translate(0,0)";
@@ -191,10 +187,10 @@ export default {
                     done();
                 }, afterEnter(el) {
                     this.flag = !this.flag;
-                },getselectnum(num){ //定义接收子组件数据的处理方法
-                    //赋值给自己data num
-                    this.num=num;
-                   if (num > this.getListById[0].count) {
+                }, getselectnum(num) { //定义接收子组件数据的处理方法
+                    //赋值给自己data num  数量选择检测
+                    this.num = num;
+                    if (num > this.getListById[0].count) {
                         this.num = this.defaultCount;
                         Toast({
                             message: '该商品最多购买' + this.defaultCount + '件',
@@ -225,13 +221,16 @@ export default {
         },
         components: {
             //pickercity,
-            numbox  
+            numbox
+        },
+        watch: {
+
         }
 }
 </script>
 <style lang="scss" scoped>
 .add_num {
-    position: fixed;
+    position: absolute;
     padding: 2px 3px;
     color: #ff0000;
     font-weight: 700;
@@ -524,10 +523,10 @@ export default {
 
 .cart {
     box-shadow: 1px 0 1px #eee;
-    position: position;
+    position: fixed;
     margin: 0;
     padding: 0;
-    //bottom: 50px;
+    bottom: 50px;
     width: 100%;
     li {
         margin: 0;

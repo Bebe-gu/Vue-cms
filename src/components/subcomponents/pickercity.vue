@@ -1,6 +1,6 @@
 <template>
-        <div>
-            <input type="text" placeholder="请选择三级地址" v-model="region" maxlength="80" readonly="readonly" @click="showAddressPicker" />
+        <div style="background: #fff;height: 1000px;">
+            <input type="text" placeholder="[mintui-picker]请选择三级地址" v-model="region" maxlength="80" readonly="readonly" @click="showAddressPicker" />
             <mt-popup v-model="regionVisible" position="bottom">
                 <div class="popbtn">
                     <mt-button @click="cancle" plain size="small">取消</mt-button>
@@ -151,7 +151,7 @@ export default {
         }
 }
 </script>
-<style scoped="scoped" lang="scss">
+<style  lang="scss" scoped>
 .popbtn {
     display: flex;
     justify-content: space-between;
@@ -161,7 +161,7 @@ export default {
 }
 
 .mint-popup-bottom {
-    width: 100%!important;
-    z-index: 5555;
+    width: 100% !important;
+    
 }
 </style>

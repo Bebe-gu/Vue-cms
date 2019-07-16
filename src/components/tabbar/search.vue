@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<h1 >search</h1>
+		
 		<pickercity></pickercity>
 	</div>
 </template>

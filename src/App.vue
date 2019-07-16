@@ -2,7 +2,7 @@
     <div class="app-container">
         <!-- header 区域 -->
         <header class="mui-bar mui-bar-nav">
-            <router-link class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" to="" @click.native="$router.back(-1)"></router-link>
+            <span class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left" @click="goBack" v-show="flag"></span>
             <h1 class="mui-title">Vue商城</h1>
         </header>
         <!-- router-view区域 -->
@@ -21,7 +21,7 @@
             </router-link>
             <router-link class="mui-tab-item-vue" to="/shopcart">
                 <span class="mui-icon mui-icon-contact mui-icon-extra mui-icon-extra-cart">
-                    <span class="mui-badge" id="badge">0</span>
+                    <span class="mui-badge" id="badge">{{$store.getters.getAllCount}}</span>
                 </span>
                 <span class="mui-tab-label">购物车</span>
             </router-link>
@@ -33,6 +33,31 @@
     </div>
 </template>
 <script>
+export default {
+    data() {
+            return {
+                flag: false
+            }
+        },
+        created() {
+            this.flag = this.$route.path === '/home' ? false : true;
+        },
+        methods: {
+            goBack() {
+                this.$router.go(-1);
+            }
+        },
+        watch: {
+            '$route.path': function(newVal, oldVal) {
+                console.log('test');
+                if (newVal === '/home') {
+                    this.flag = false;
+                } else {
+                    this.flag = true;
+                }
+            }
+        }
+}
 </script>
 <style lang="scss" scoped>
 * {
@@ -42,6 +67,7 @@
 .app-container {
     padding-top: 45px;
     overflow-x: hidden;
+    overflow-y: scroll;
     padding-bottom: 50px;
 }
 
@@ -59,7 +85,7 @@
 
 .v-enter-active,
 .v-leave-active {
-    transition: all 0.5s ease;
+    transition: all 0.2s ease;
 }
 
 .mui-bar {
@@ -71,7 +97,7 @@
 .mui-bar-tab .mui-tab-item-vue {
     display: table-cell;
     overflow: hidden;
-    width: 1%;
+    width: 100%;
     height: 50px;
     text-align: center;
     vertical-align: middle;

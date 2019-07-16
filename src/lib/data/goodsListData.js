@@ -17,7 +17,7 @@ const datalist = [{
             pic_url: '/img/pic1-info.jpg'
         },
         old_price: 289,
-        now_price: 199,
+        now_price: 199.9,
         count: 100
     },
 
