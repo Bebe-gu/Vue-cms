@@ -113,7 +113,8 @@ export default {
                 flag: false,
                 address: '北京朝阳区三环到四环之间',
                 cityData,
-                datalist
+                datalist,
+                poponetop:0
             }
         },
         created() {
@@ -130,10 +131,14 @@ export default {
             this.$nextTick(function() {
                 //徽标左边距离
                 var badgeleft = document.getElementById('badge').getBoundingClientRect().left;
+                var badgetop = document.getElementById('badge').getBoundingClientRect().top;
                 //将徽标左距离赋给popone+1的左距离
+                var poponetop = document.getElementById('popone').style.top;
+                this.poponetop = poponetop;
                 document.getElementById('popone').style.left = badgeleft + "px";
+                document.getElementById('popone').style.top = badgetop + "px";
                 //console.log('徽标:' + badgeleft + '---数字：' + poponeLeft);
-                //console.log(this.$refs.cart);
+                console.log(badgetop);
             });
         },
         methods: {
@@ -224,7 +229,9 @@ export default {
             numbox
         },
         watch: {
-
+            'poponetop':function(val,oldVal){
+                console.log(val+'-----'+oldVal);
+            }
         }
 }
 </script>
@@ -391,7 +398,7 @@ export default {
         top: 22px;
         width: 15px;
         height: 3px;
-        background-image: url('/img/point.png');
+        background-image: url('../../img/point.png');
         background-repeat: no-repeat;
         background-size: 15px;
         background-position: 0 0;

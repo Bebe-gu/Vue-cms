@@ -93,22 +93,22 @@ export default {
                 //轮播图模拟数据
                 lunbotuList: [{
                         id: 1,
-                        url: '../../img/banner1.jpg'
+                        url: './img/banner1.jpg'
                     }, {
                         id: 2,
-                        url: '../../img/banner2.jpg'
+                        url: './img/banner2.jpg'
                     }, {
                         id: 3,
-                        url: '../../img/banner3.jpg'
+                        url: './img/banner3.jpg'
                     }, {
                         id: 4,
-                        url: '../../img/banner4.jpg'
+                        url: './img/banner4.jpg'
                     }, {
                         id: 5,
-                        url: '../../img/banner5.jpg'
+                        url: './img/banner5.jpg'
                     }, {
                         id: 6,
-                        url: '../../img/banner6.jpg'
+                        url: './img/banner6.jpg'
                     }
 
                 ]

@@ -34,7 +34,14 @@ module.exports = {
             //npm i url-loader file-loader -D
             test: /\.(jpg|png|gif|bmp|jpeg)$/,
             //limit 限制大小 防止转换base64 name=[name].[ext]保持原名和后缀 加[hash:8]防止打包后重名覆盖
-            use: 'url-loader?limit=6101&name=[hash:8]-[name].[ext]'
+            use: [{
+                loader: 'url-loader',
+                options: {
+                    name: '[hash:8]-[name].[ext]',
+                    limit: 200000,
+                    outputPath: 'img'
+                }
+            }]
         }, {
 
             test: /\.(ttf|eot|svg|woff|woff2)$/,
@@ -55,7 +62,7 @@ module.exports = {
     },
     //配置插件节点
     plugins: [
-      
+
         //启用热更新模块
         new webpack.HotModuleReplacementPlugin(),
         new htmlWebpackPlugin({
@@ -70,7 +77,7 @@ module.exports = {
     resolve: {
         alias: {
             "vue$": "vue/dist/vue.js"
-          
+
         }
     }
 }

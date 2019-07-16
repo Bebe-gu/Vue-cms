@@ -49,7 +49,7 @@ export default {
         },
         watch: {
             '$route.path': function(newVal, oldVal) {
-                console.log('test');
+                //console.log('test');
                 if (newVal === '/home') {
                     this.flag = false;
                 } else {

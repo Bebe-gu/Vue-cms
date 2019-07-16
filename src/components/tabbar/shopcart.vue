@@ -34,8 +34,8 @@
             <div class="total">合计：<span>￥ {{$store.getters.getGoodsSumAndTotal.total}}</span></div>
             <div class="toTotal"><a>去结算<span>({{$store.getters.getGoodsSumAndTotal.sum}})件</span></a></div>
         </div>
-        <div class="test">{{this.$store.getters.getGoodsChecked}}</div>
-        <div>{{this.$store.state.checkAllStatus}}</div>
+        <!--  <div class="test">{{this.$store.getters.getGoodsChecked}}</div>
+        <div>{{this.$store.state.checkAllStatus}}</div> -->
     </div>
 </template>
 <script>
@@ -97,14 +97,14 @@ export default {
                         arr.push(this.ischecked[i]);
                     }
                     //every判断数组的每一项的选中状态
-                    var result=arr.every(item => {
-                       return item == true;
-                    })
-                    //赋值给全选按钮
+                    var result = arr.every(item => {
+                            return item == true;
+                        })
+                        //赋值给全选按钮
                     if (result) {
-                         this.$store.state.checkAllStatus = true;
-                    }else{
-                         this.$store.state.checkAllStatus = false;
+                        this.$store.state.checkAllStatus = true;
+                    } else {
+                        this.$store.state.checkAllStatus = false;
                     }
                     //本地存储状态
                     localStorage.setItem('checkAllStatus', JSON.stringify(result));
@@ -221,6 +221,7 @@ export default {
     display: flex;
     background-color: #fff;
     box-shadow: 1px 0 1px #eee;
+    z-index: 1000;
     label {
         font-size: 16px;
         padding-right: 10px;
