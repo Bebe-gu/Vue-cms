@@ -14,5 +14,5 @@ vue v2.0
 
 4. 预览
 
-![image](https://github.com/Bebe-gu/Vue-cms/blob/master/1.png?raw=true)
-![image](https://github.com/Bebe-gu/Vue-cms/blob/master/demo.gif?raw=true)
+![image](https://github.com/Bebe-gu/Vue-cms/blob/master/src/img/demoimges/1.png?raw=true)
+![image](https://github.com/Bebe-gu/Vue-cms/blob/master/src/img/demoimges/demo.gif?raw=true)
