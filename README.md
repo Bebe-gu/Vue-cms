@@ -15,7 +15,7 @@ vue v2.0
 
 4. 预览
 
-5.[在线Demo](http://gcloveyou1314.gz01.bdysite.com/vue-cms/index.html#/home)
+    5.[在线Demo](http://gcloveyou1314.gz01.bdysite.com/vue-cms/index.html#/home)
 
 ![image](https://github.com/Bebe-gu/Vue-cms/blob/master/src/img/demoimges/1.png?raw=true)
 ![image](https://github.com/Bebe-gu/Vue-cms/blob/master/src/img/demoimges/demo.gif?raw=true)
