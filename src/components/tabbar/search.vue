@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div style="min-height: calc(100%+1px);">
 		
 		<pickercity></pickercity>
 	</div>

@@ -66,9 +66,17 @@ export default {
 
 .app-container {
     padding-top: 45px;
-    overflow-x: hidden;
-    overflow-y: scroll;
+    // //overflow-x: hidden;
+    // overflow-y: scroll;
+    overflow:auto;
+    //在移动端上，在你用overflow-y:scorll属性的时候，你会发现滚动的效果很木，很慢，这时候可以使用-webkit-overflow-scrolling:touch这个属性，让滚动条产生滚动回弹的效果，就像ios原生的滚动条一样流畅。
+    //webkit-overflow-scrolling:touch属性的下一层子元素上，将height加1%或1px。从而主动触发scrollbar。   给每个组件根部<div>加上min-height:calc(100%+1px); 解决ios滚动回弹遮挡页面顶部和底部问题
+
+    -webkit-overflow-scrolling:touch;
     padding-bottom: 50px;
+    height: 100vh;
+    min-height: 100vh;
+
 }
 
 .v-enter {

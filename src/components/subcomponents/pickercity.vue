@@ -1,5 +1,5 @@
 <template>
-        <div style="background: #fff;height: 1000px;">
+        <div style="background: #fff;height: 100%;">
             <input type="text" placeholder="[mintui-picker]请选择三级地址" v-model="region" maxlength="80" readonly="readonly" @click="showAddressPicker" />
             <mt-popup v-model="regionVisible" position="bottom">
                 <div class="popbtn">

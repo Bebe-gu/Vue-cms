@@ -1,9 +1,11 @@
 <template>
-    <div style="margin-bottom: 50px;">
+    <div style="margin-bottom: 50px;min-height: calc(100%+1px);">
         <!-- 轮播图 -->
         <mt-swipe :auto="4000">
             <mt-swipe-item v-for="item in getsliderImg" :key="item.id">
-                <img :src="item.pic_url" alt="">
+                <div class="img-box">
+                    <img :src="item.pic_url" alt="">
+                </div>
             </mt-swipe-item>
         </mt-swipe>
         <!-- 商品标题 -->
@@ -114,7 +116,7 @@ export default {
                 address: '北京朝阳区三环到四环之间',
                 cityData,
                 datalist,
-                poponetop:0
+                poponetop: 0
             }
         },
         created() {
@@ -182,7 +184,7 @@ export default {
                     el.style.transform = "translate(0,0)";
                 }, enter(el, done) {
                     el.offsetWidth;
-                    el.style.transform = `translate(0,-20px)`;
+                    el.style.transform = `translate(0,-30px)`;
                     el.style.transition = "all 2s ease";
                     Toast({
                         message: '加入购物车成功',
@@ -229,15 +231,15 @@ export default {
             numbox
         },
         watch: {
-            'poponetop':function(val,oldVal){
-                console.log(val+'-----'+oldVal);
+            'poponetop': function(val, oldVal) {
+                console.log(val + '-----' + oldVal);
             }
         }
 }
 </script>
 <style lang="scss" scoped>
 .add_num {
-    position: absolute;
+    position: fixed;
     padding: 2px 3px;
     color: #ff0000;
     font-weight: 700;
@@ -474,10 +476,16 @@ export default {
     height: 370px;
     width: 100%;
     .mint-swipe-item {
-        img {
+        width: 100%;
+        height: 100%;
+        .img-box {
             width: 100%;
             height: 100%;
-            //background-size: cover;
+            img {
+                width: 100%;
+                height: 100%;
+                //background-size: cover;
+            }
         }
     }
 }
@@ -517,9 +525,9 @@ export default {
         }
     }
     img {
-        display: block;
         width: 100%;
         height: 100%;
+        display: block;
         background-size: cover;
     }
     // .more {

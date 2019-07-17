@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div style="min-height: calc(100%+1px);">
         <div class="cartMain">
             <ul class="mui-table-view">
                 <li class="mui-table-view-cell" v-for="(item,index) in cart" :key="item.id">
@@ -221,7 +221,6 @@ export default {
     display: flex;
     background-color: #fff;
     box-shadow: 1px 0 1px #eee;
-    z-index: 1000;
     label {
         font-size: 16px;
         padding-right: 10px;

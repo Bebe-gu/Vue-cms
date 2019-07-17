@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div style="min-height: calc(100%+1px);">
         <ul class="list_content mui-clearfix">
             <li v-for="item in datalist" :key="item.id">
                 <router-link class="list_box" :to="'/home/goodsinfo/'+item.id">

@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div style="min-height: calc(100%+1px);">
         <!-- 轮播图 -->
         <mt-swipe :auto="4000">
             <mt-swipe-item v-for="item in lunbotuList" :key="item.id"><img :src="item.url" alt=""></mt-swipe-item>

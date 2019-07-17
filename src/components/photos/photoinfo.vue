@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div style="min-height: calc(100%+1px);">
         <div class="thumbs"> <img class="preview-img" v-for="(item, index) in imglist" :src="item.src" height="100" @click="$preview.open(index, imglist)" :key="item.src">
         </div>
         <h1>详细搭配区域</h1>

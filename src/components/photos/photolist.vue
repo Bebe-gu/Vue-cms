@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div style="min-height: calc(100%+1px);">
         <!-- tapbar区域 -->
         <div class="mui-slider">
             <div class="mui-scroll-wrapper mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">

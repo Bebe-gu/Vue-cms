@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div style="min-height: calc(100%+1px);">
 		<h3>member</h3>
 	</div>
 </template>
