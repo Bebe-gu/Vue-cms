@@ -4,7 +4,7 @@
 node v12.4.0
 vue v2.0 
 
-![在线Demo](http://gcloveyou1314.gz01.bdysite.com/vue-cms/index.html#/home)
+[在线Demo](http://gcloveyou1314.gz01.bdysite.com/vue-cms/index.html#/home)
 ##部署步骤
 1. 添加系统环境包node_moudules
     先运行 npm install 安装依赖包
